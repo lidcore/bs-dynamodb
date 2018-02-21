@@ -1,8 +1,8 @@
 {
   "name": "bs-dynamodb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bindings to the dynamodb npm module for bucklescript applications",
-  "main": "src/dynamodb.bs.js",
+  "main": "lib/js/src/dynamodb.js",
   "scripts": {
     "build": "bsb -make-world",
     "watch": "bsb -make-world -w",
