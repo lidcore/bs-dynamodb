@@ -1,5 +1,9 @@
 open Callback
 
+let uuid : unit -> string [@bs] = [%bs.raw{|function() {
+  require("uuid/v1")();
+}|}]
+
 module Definition = struct
   open Dynamodb
 
@@ -19,8 +23,7 @@ module Definition = struct
   let specs = 
     let specs = [
       Specs.string "id";
-      Specs.string "key";
-      Specs.string "profile_id"
+      Specs.string "key"
     ] in
     List.fold_left (fun spec str ->
       str spec) (Specs.make ()) specs
@@ -30,6 +33,12 @@ end
 module Model = Dynamodb.Make(Definition)
 
 include Model
+
+external set_id : params -> string -> unit = "id" [@@bs.set]
+
+let create params =
+  set_id params (uuid () [@bs]);
+  create params
 
 external make_error : string -> exn = "Error" [@@bs.new]
 

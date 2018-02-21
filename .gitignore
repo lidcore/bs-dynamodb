@@ -27,3 +27,4 @@
 *.log
 /node_modules/
 .*sw*
+*.lock
