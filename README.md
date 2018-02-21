@@ -1,7 +1,7 @@
 # bs-dynamodb
 
 This module provides a functorial API to npm's [dynamodb](https://www.npmjs.com/package/dynamodb) module.
-It makes it easy to define and mamipulate dynamodb models in a ORM-oriented fashion. It depends on
+It makes it easy to define and manipulate dynamodb models in a ORM-oriented fashion. It depends on
 [bs-callback](https://github.com/lidcore/bs-callback) for asynchronous computations but can also use `Promise`
 via `Callback.{to,from}_promise`.
 
