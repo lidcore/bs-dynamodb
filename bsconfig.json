@@ -1,0 +1,20 @@
+{
+  "name": "bs-dynamodb",
+  "sources": [
+    "src",
+    {
+      "dir": "examples",
+      "type": "dev"
+    }
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "bs-dependencies" : ["bs-callback"],
+  "refmt": 3,
+}

@@ -1,0 +1,37 @@
+{
+  "name": "bs-dynamodb",
+  "version": "1.0.0",
+  "description": "Bindings to the dynamodb nom module for bucklescript applications",
+  "main": "src/dynamodb.bs.js",
+  "scripts": {
+    "build": "bsb -make-world",
+    "watch": "bsb -make-world -w",
+    "clean": "bsb -clean-world"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lidcore/bs-dynamodb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lidcore/bs-dynamodb/issues"
+  },
+  "keywords": [
+    "bucklescript",
+    "asynchronous",
+    "dynamodb",
+    "monad"
+  ],
+  "peerDependencies": {
+    "bs-callback": "^1.0.5",
+    "bs-platform": "^2.1.0",
+    "dynamodb": "^1.1.1"
+  },
+  "devDependencies": {
+    "bs-callback": "^1.0.5",
+    "bs-platform": "^2.1.0",
+    "dynamodb": "^1.1.1"
+  },
+  "author": "Lidcore IT <it@lidcore.com>",
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/lidcore/bs-dynamodb"
+}
