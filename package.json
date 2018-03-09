@@ -22,13 +22,13 @@
     "monad"
   ],
   "peerDependencies": {
-    "bs-callback": "^1.0.5",
-    "bs-platform": "^2.1.0",
+    "bs-callback": "^1.0.10",
+    "bs-platform": "^2.2.2",
     "dynamodb": "^1.1.1"
   },
   "devDependencies": {
-    "bs-callback": "^1.0.5",
-    "bs-platform": "^2.1.0",
+    "bs-callback": "^1.0.10",
+    "bs-platform": "^2.2.2",
     "dynamodb": "^1.1.1",
     "uuid": "^3.1.0"
   },

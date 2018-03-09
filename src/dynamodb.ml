@@ -93,7 +93,7 @@ module Make(Def:Definition_t) : Model_t with type params = Def.params and type a
   let create = create model_class
 
   let to_opt = fun value ->
-    Callback.return (Js.Nullable.to_opt value)
+    Callback.return (Js.Nullable.toOption value)
 
   external get : model_class -> string -> model Js.Nullable.t Callback.callback -> unit = "" [@@bs.send]
   let get id =
