@@ -27,10 +27,10 @@ module type Model_t = sig
   type params
   type attributes
   type model = <attrs:attributes> Js.t
-  val create_table : unit Callback.t
-  val create : params -> model Callback.t
-  val get    : string -> model option Callback.t
-  val update : attributes -> model option Callback.t
+  val create_table : unit BsCallback.t
+  val create : params -> model BsCallback.t
+  val get    : string -> model option BsCallback.t
+  val update : attributes -> model option BsCallback.t
 end
 
 module Make : functor (Def:Definition_t) -> Model_t with type params = Def.params and type attributes = Def.attributes

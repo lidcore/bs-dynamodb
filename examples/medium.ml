@@ -1,4 +1,4 @@
-open Callback
+open BsCallback
 
 let uuid : unit -> string [@bs] = [%bs.raw{|function() {
   require("uuid/v1")();
@@ -47,5 +47,5 @@ let set_state model state =
   attrs##state #= state;
   update attrs >> fun model ->
     match model with
-      | Some model -> Callback.return model
-      | None -> Callback.fail (make_error "Inconsistent state update (should not happen)")
+      | Some model -> BsCallback.return model
+      | None -> BsCallback.fail (make_error "Inconsistent state update (should not happen)")

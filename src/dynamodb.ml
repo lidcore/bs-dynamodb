@@ -1,4 +1,4 @@
-open Callback
+open BsCallback
 
 [%%bs.raw{|var dynamodb = require("dynamodb")|}]
 
@@ -59,10 +59,10 @@ module type Model_t = sig
   type params
   type attributes
   type model = <attrs:attributes> Js.t
-  val create_table : unit Callback.t
-  val create : params -> model Callback.t
-  val get    : string -> model option Callback.t
-  val update : attributes -> model option Callback.t
+  val create_table : unit BsCallback.t
+  val create : params -> model BsCallback.t
+  val get    : string -> model option BsCallback.t
+  val update : attributes -> model option BsCallback.t
 end
 
 module Make(Def:Definition_t) : Model_t with type params = Def.params and type attributes = Def.attributes = struct
@@ -86,20 +86,20 @@ module Make(Def:Definition_t) : Model_t with type params = Def.params and type a
 
   let model_class = make_model_class ()
 
-  external create_table : model_class -> unit Callback.callback -> unit = "createTable" [@@bs.send]
+  external create_table : model_class -> unit BsCallback.callback -> unit = "createTable" [@@bs.send]
   let create_table = create_table model_class
 
-  external create : model_class -> params -> model Callback.callback -> unit = "" [@@bs.send]
+  external create : model_class -> params -> model BsCallback.callback -> unit = "" [@@bs.send]
   let create = create model_class
 
   let to_opt = fun value ->
-    Callback.return (Js.Nullable.toOption value)
+    BsCallback.return (Js.Nullable.toOption value)
 
-  external get : model_class -> string -> model Js.Nullable.t Callback.callback -> unit = "" [@@bs.send]
+  external get : model_class -> string -> model Js.Nullable.t BsCallback.callback -> unit = "" [@@bs.send]
   let get id =
     get model_class id >> to_opt
 
-  external update : model_class -> attributes -> model Js.Nullable.t Callback.callback -> unit = "" [@@bs.send]
+  external update : model_class -> attributes -> model Js.Nullable.t BsCallback.callback -> unit = "" [@@bs.send]
   let update attributes =
     update model_class attributes >> to_opt
 end

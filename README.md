@@ -3,7 +3,7 @@
 This module provides a functorial API to npm's [dynamodb](https://www.npmjs.com/package/dynamodb) module.
 It makes it easy to define and manipulate dynamodb models in a ORM-oriented fashion. It depends on
 [bs-callback](https://github.com/lidcore/bs-callback) for asynchronous computations but can also use `Promise`
-via `Callback.{to,from}_promise`.
+via `BsCallback.{to,from}_promise`.
 
 ## Installation
 
@@ -31,16 +31,16 @@ type attributes = <
 
 type model  = <attrs:attributes> Js.t
 
-val create_table : unit Callback.t
-val create       : params -> model Callback.t
-val get          : string -> model option Callback.t
-val set_state    : model -> string -> model Callback.t
-val update       : attributes -> model option Callback.t
+val create_table : unit BsCallback.t
+val create       : params -> model BsCallback.t
+val get          : string -> model option BsCallback.t
+val set_state    : model -> string -> model BsCallback.t
+val update       : attributes -> model option BsCallback.t
 ```
 
 `medium.ml`:
 ```
-open Callback
+open BsCallback
 
 let uuid : unit -> string [@bs] = [%bs.raw{|function() {
   require("uuid/v1")();
@@ -89,6 +89,6 @@ let set_state model state =
   attrs##state #= state;
   update attrs >> fun model ->
     match model with
-      | Some model -> Callback.return model
-      | None -> Callback.fail (make_error "Inconsistent state update (should not happen)")
+      | Some model -> BsCallback.return model
+      | None -> BsCallback.fail (make_error "Inconsistent state update (should not happen)")
 ```
