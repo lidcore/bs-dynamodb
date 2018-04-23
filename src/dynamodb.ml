@@ -71,16 +71,13 @@ module Make(Def:Definition_t) : Model_t with type params = Def.params and type a
   type model   = <attrs:attributes> Js.t
   
   type definition
-  external make_definition : hashKey:string -> timestamps:Js.boolean -> schema:Specs.spec -> unit -> definition = "" [@@bs.obj] 
+  external make_definition : hashKey:string -> timestamps:bool -> schema:Specs.spec -> unit -> definition = "" [@@bs.obj] 
 
   type model_class
   external define : dynamodb -> string -> definition -> model_class = "" [@@bs.send] 
   let make_model_class () =
-    let timestamps =
-      Js.Boolean.to_js_boolean Def.timestamps
-    in
     let definition =
-      make_definition ~hashKey:Def.hashKey ~timestamps ~schema:Def.specs ()
+      make_definition ~hashKey:Def.hashKey ~timestamps:Def.timestamps ~schema:Def.specs ()
     in
     define dynamodb Def.table_name definition
 
